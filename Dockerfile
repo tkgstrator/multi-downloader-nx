@@ -1,4 +1,4 @@
-FROM node  AS builder 
+FROM node:26.12.1  AS builder
 WORKDIR "/app"
 COPY . .
 
@@ -19,7 +19,7 @@ RUN pnpm run build-linux-x64-gui
 
 # Move build to new Clean Image
 
-FROM node
+FROM node:26.12.1
 WORKDIR "/app"
 COPY --from=builder /app/lib/_builds/multi-downloader-nx-linux-x64-gui ./
 
